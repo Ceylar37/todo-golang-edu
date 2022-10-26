@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App API</title>
+</head>
+<body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: monospace;
+    }
+    body {
+        padding: 20px;
+    }
+    details {
+        font-size: 18px;
+    }
+    h2 {
+        display: inline-block;
+    }
+    li {
+        list-style-type: none;
+        margin: 20px 0;
+    }
+    summary {
+        cursor: pointer;
+    }
+</style>
+<h1>Тут будет краткое описание того как работать с этим API</h1>
+<ul>
+    <li>
+        <details>
+            <summary>
+                <h2>
+                    /api/ [GET]
+                </h2>
+            </summary>
+            Этот ендпоинт возвращает все todo, которые лежат в бд
+            Возвращается json со следующими полями
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"result": [<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 1,<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "some description",<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isDone": false,<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isFavourite": true<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                &nbsp;&nbsp;]<br/>
+                }<br/>
+            </i>
+        </details>
+    </li>
+    <hr/>
+    <li>
+        <details>
+            <summary>
+                <h2>
+                    /api/ [POST]
+                </h2>
+            </summary>
+            Этот ендпоинт принимает объект с полями: <b>description</b>, <b>isDone</b>, <b>isFavourite</b>
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"description": "some description for new todo",<br/>
+                &nbsp;&nbsp;"isDone": true,<br/>
+                &nbsp;&nbsp;"isFavourite": true<br/>
+                }<br/>
+            </i>
+            <br/>И создаёт новую todo на их основе
+            <br/>Возвращается json в которой будет <b>id</b> созданной todo
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"id": 12<br/>
+                }<br/>
+            </i>
+            При этомотправлять поля <b>isDone</b> и <b>isFavourite</b> не обязательно, тогда они будут созданы со
+            стандартными значениями <b>false</b>
+        </details>
+    </li>
+    <hr/>
+    <li>
+        <details>
+            <summary>
+                <h2>
+                    api/changeIsDone/:id [PATCH]
+                </h2>
+            </summary>
+            Это динамический эндпоинт в его URL параметр <i>:id</i> значит <b>id</b> изменяемой todo<br/>
+            Этот ендпоинт принимает объект с полем <b>isDone</b> и меняет значение <b>isDone</b> у todo с переданным в
+            URL <b>id</b>
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"isDone": true<br/>
+                }<br/>
+            </i>
+            <br/>Возвращается json в которой будет <b>id</b> изменённой todo
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"id": 12<br/>
+                }<br/>
+            </i>
+        </details>
+    </li>
+    <hr/>
+    <li>
+        <details>
+            <summary>
+                <h2>
+                    api/changeIsFavourite/:id [PATCH]
+                </h2>
+            </summary>
+            Этот эндпоинт работает так же как и предыдущий, но изменяет поле <b>isFavourite</b>
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"isFavourite": true<br/>
+                }<br/>
+            </i>
+            <br/>Возвращается json в которой будет <b>id</b> изменённой todo
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"id": 12<br/>
+                }<br/>
+            </i>
+        </details>
+    </li>
+    <hr/>
+    <li>
+        <details>
+            <summary>
+                <h2>
+                    api/:id [DELETE]
+                </h2>
+            </summary>
+            Этот эндпоинт так же динамический, но он удаляет todo с переданным в URL <b>id</b>
+            <br/>Возвращается json в которой будет <b>id</b> удалённой todo
+            <br/><u>Пример:</u><br/>
+            <i>
+                {<br/>
+                &nbsp;&nbsp;"id": 12<br/>
+                }<br/>
+            </i>
+        </details>
+    </li>
+</ul>
+</body>
+</html>
