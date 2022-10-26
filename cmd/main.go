@@ -23,7 +23,6 @@ func main() {
 		Username: os.Getenv("DB_USERNAME"),
 		Password: os.Getenv("PASSWORD"),
 		DBName:   os.Getenv("DB_NAME"),
-		SSLMode:  os.Getenv("SSL_MODE"),
 	}
 
 	db, err := repository.NewPostgresDB(cfg)
