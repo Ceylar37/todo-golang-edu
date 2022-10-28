@@ -2,7 +2,9 @@ package handler
 
 import (
 	"crud/pkg/service"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"time"
 )
 
 type Handler struct {
@@ -16,6 +18,12 @@ func NewHandler(services *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	router.LoadHTMLGlob("templates/*")
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"*"},
+		AllowHeaders: []string{"*"},
+		MaxAge:       12 * time.Hour,
+	}))
 
 	api := router.Group("/api")
 	{
